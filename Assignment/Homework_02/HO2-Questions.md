@@ -27,7 +27,9 @@ It is natural because vectors and arrays have similar operations of adding and t
 |Same parameter list | No | Yes |
 |Polymorphism involved | Yes (static) | Yes (dynamic) |
 
+**1. Why is overloading a compile-time convenience?**
 
+It decides at compile time which operator to call on
 
 ## Constructors & Initialization Lists
 
