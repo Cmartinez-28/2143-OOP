@@ -63,3 +63,33 @@ They are required for reference members.
 **1. What is the only language-level difference between struct and class?**
 
 A struct is public by default while a class is private by default.
+
+**2. Why does C++ even allow both?**
+
+They are both allowed the choice between struct and class communicates intent.
+
+**3. When does choosing struct communicate intent better than class?**
+
+Struct communicates intent better than class when there are no invariants or encapsulation involved with the user's type.
+
+## Operator Overloading
+
+**1. Why can't C++ overload:**
+
+'.' -- it must be resolved at compile time
+
+'::' -- it is resolved before anything else
+
+## Friend: Controlled Violation of Privacy
+
+**1. What does the friend keyword actually do?**
+
+Friend keyword gives complete access to class & private members
+
+**2. Why is operator<< commonly declared as a friend?**
+
+Operator << is commonly declared a friend to use cout << with private members
+
+**3. Why is excessive use of friend a red flag?**
+
+It is lazy, not safe, & and breaks the idea of encapsulation.
