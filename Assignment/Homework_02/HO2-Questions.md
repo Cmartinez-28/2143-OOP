@@ -31,6 +31,18 @@ It is natural because vectors and arrays have similar operations of adding and t
 
 It decides at compile time which operator to call on
 
+**2. Why is overriding a run time contract?**
+
+Overriding allows the program to decide which method implementation to use at run time
+
+**3. Why do beginners confuse the two?**
+
+The two are seen as one process, but there are two phases of analyzing and executing the code.
+
+**4. Why is that confusion dangerous?**
+
+It is dangerous because not knowing the difference between the two could prevent the user from knowing how to fix an error.
+
 ## Constructors & Initialization Lists
 
 ```
@@ -60,6 +72,22 @@ An error occurs because id is of type const and must be initialized before hand,
 
 They are required for reference members.
 
+**Copy Constructor vs Assignment Operator**
+
+**1. When is the copy constructor invoked?**
+
+A copy constructor is invoked when a new object is created & immediately assigned to an already existing object;
+```
+Point2D A(2,4);
+Point2D B = A;
+```
+
+**2. When is the assignment operator invoked?**
+
+The assignment operator is invoked when an already existing object is assigned to another already existing object
+
+`m6 = m3;  //m6 and m3 already exist`
+
 ## Struct vs Class
 
 **1. What is the only language-level difference between struct and class?**
@@ -68,7 +96,7 @@ A struct is public by default while a class is private by default.
 
 **2. Why does C++ even allow both?**
 
-They are both allowed the choice between struct and class communicates intent.
+They are both allowed because the choice between struct and class communicates intent.
 
 **3. When does choosing struct communicate intent better than class?**
 
