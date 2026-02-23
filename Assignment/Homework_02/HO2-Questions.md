@@ -29,7 +29,7 @@ It is natural because vectors and arrays have similar operations of adding and t
 
 **1. Why is overloading a compile-time convenience?**
 
-It decides at compile time which operator to call on
+It decides at compile time which operator to call on based on static types
 
 **2. Why is overriding a run time contract?**
 
@@ -41,7 +41,7 @@ The two are seen as one process, but there are two phases of analyzing and execu
 
 **4. Why is that confusion dangerous?**
 
-It is dangerous because not knowing the difference between the two could prevent the user from knowing how to fix an error.
+It is dangerous because the user could be expecting something that is resolved at run time to be used in something that is resolved at compile time
 
 ## Constructors & Initialization Lists
 
@@ -102,13 +102,13 @@ They are both allowed because the choice between struct and class communicates i
 
 Struct communicates intent better than class when there are no invariants or encapsulation involved with the user's type.
 
+**4. Why does intent matter more than syntax in large systems?**
+
+There are several different people that will be working with the system. The intnet lets all of them know what the purpose and goal is. 
+
 ## Operator Overloading
 
-**1. Why can't C++ overload:**
-
-'.' -- it must be resolved at compile time
-
-'::' -- it is resolved before anything else
+C++ cannot overload '.' or '::' becuase they are part of the language semantics that define what the computer does at execution. 
 
 ## Friend: Controlled Violation of Privacy
 
@@ -123,3 +123,25 @@ Operator << is commonly declared a friend to use cout << with private members
 **3. Why is excessive use of friend a red flag?**
 
 It is lazy, not safe, & and breaks the idea of encapsulation.
+
+## Reflection
+
+**1. Does your Point2D feel like a built-in type?**
+
+Yes
+
+**What design choice most contributed to that feeling?**
+
+Having the copy constructor and the overloaded operator == that allowed me to compare p3 to Point2D(4,6)
+
+**Which OOP concept currently feels overhyped?**
+
+The concept of overriding, but have not seen too much of it yet
+
+**Which one feels underrated?**
+
+Overloading operators so the program knows what to do when arithmetic or comparison is happening between two objects
+
+**What part of this assignment made you uncomfortable?**
+
+Learning more about why certain operators can't be overloaded, and the difference between run time and compile time. There are some things tougher for me to understand when going deeper into the topic.
