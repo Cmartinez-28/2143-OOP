@@ -16,7 +16,7 @@ public:
 		return bazooka << "(" << other.x << "," << other.y << ")";
 	}
 
-	//Overloading operators
+	//Overloading operators so the program knows what to do when it's called
 	Point2D operator+(const Point2D& rhs)
 		{
 			return Point2D(x + rhs.x,y + rhs.y);
