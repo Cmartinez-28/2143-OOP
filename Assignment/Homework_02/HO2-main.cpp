@@ -1,3 +1,7 @@
+//Christopher Martinez
+//CMPS 2143 - Griffin
+//Homework 02
+
 #include <iostream>
 using namespace std;
 
