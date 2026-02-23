@@ -10,5 +10,5 @@ three constructors, initialization lists, overloaded operators, and const correc
 
 |   #   | File        | Description                       |
 | :---: | ----------- | --------------------------------- |
-|   1   | HO2-main.cpp  | cpp file for the class assignment |
-|   2   | HO2-Questions.md  | answered questions from study guide |
+|   1   | [HO2-main.cpp](https://github.com/Cmartinez-28/2143-OOP/blob/main/Assignment/Homework_02/HO2-main.cpp)| cpp file for the class assignment |
+|   2   | [HO2-Questions.md](https://github.com/Cmartinez-28/2143-OOP/blob/main/Assignment/Homework_02/HO2-Questions.md)| answered questions from study guide |
