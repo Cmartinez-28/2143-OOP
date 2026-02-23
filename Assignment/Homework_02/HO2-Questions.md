@@ -1,4 +1,5 @@
 # Homework 02
+# Christopher Martinez
 ## Stacks & Queues
 **1. Compare array-based vs list-based implementations of stacks & queues:**
 
