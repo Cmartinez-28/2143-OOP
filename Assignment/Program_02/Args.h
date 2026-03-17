@@ -3,8 +3,9 @@ using namespace std;
 
 class Args
 {
-    string input,output;
-    bool grayscale, blur, flipH, flipV;
+    string input,output, brlevel, rotlevel;
+    bool grayscale, blur, flipH, flipV,brighten, rotate;
+    int val;
 public:
     string error_message;
     Args();
