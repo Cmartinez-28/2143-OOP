@@ -4,7 +4,7 @@ using namespace std;
 class Args
 {
     string input,output;
-    bool grayscale, blur = false;
+    bool grayscale, blur, flipH, flipV;
 public:
     string error_message;
     Args();
