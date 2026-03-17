@@ -6,6 +6,9 @@ using namespace std;
     Args :: Args()
     {
         grayscale = false;
+        blur = false;
+        flipH = false;
+        flipV = false;
     }
 
     void Args :: printSummary()
@@ -19,6 +22,16 @@ using namespace std;
         if (blur)
         {
             flags = flags + delim + "blur";
+            delim = " ";
+        }
+        if (flipH)
+        {
+            flags = flags + delim + "flipH";
+            delim = " ";
+        }
+        if (flipV)
+        {
+            flags = flags + delim + "flipV";
             delim = " ";
         }
         cout << "Input: " << input << endl;
@@ -42,6 +55,19 @@ using namespace std;
                 if (strcmp (argv[i],"--grayscale") == 0 || strcmp(argv[i], "-g") == 0)
                 {
                     grayscale = true;
+                }
+
+                if (strcmp (argv[i],"--blur") == 0 || strcmp(argv[i], "-l") == 0)
+                {
+                    blur = true;
+                }
+                if (strcmp (argv[i],"--flipH") == 0 || strcmp(argv[i], "-h") == 0)
+                {
+                    flipH = true;
+                }
+                if (strcmp (argv[i],"--flipV") == 0 || strcmp(argv[i], "-v") == 0)
+                {
+                    flipV = true;
                 }
             }
             result = true;
