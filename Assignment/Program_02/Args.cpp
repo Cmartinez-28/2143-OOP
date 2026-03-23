@@ -3,7 +3,9 @@ using namespace std;
 #include<iostream>
 #include <cstring>
 #include <string>
+#include<vector>
 
+    //flags are set to false as default
     Args :: Args()
     {
         grayscale = false;
@@ -12,6 +14,37 @@ using namespace std;
         flipV = false;
         brighten = false;
         rotate = false;
+        brightenval = 0;
+        rotateval= 0;
+    }
+    //isInteger receives the string argument entered after an option such as
+    //--brighten or --rotate and checks to see if it's an integer, which is required
+    bool Args::isInteger(const string& value)
+    {
+        try
+        {
+            size_t position;
+            stoi(value, &position);
+            return position == value.length();
+        }
+        catch(const invalid_argument& e)
+        {
+            return false;
+        }
+    }
+    //Create string vector to hold all valid string arguments
+    vector<string> valid = {"--grayscale", "--brighten", "--rotate", "--blur"};
+    //Test to see if string arguments are valid
+    bool Args:: argTester(string arg)
+    {
+        for (auto &item : valid)
+        {
+            if(arg==item)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     void Args :: printSummary()
@@ -40,14 +73,12 @@ using namespace std;
         }
         if (brighten)
         {
-            val = stoi(brlevel);
-            params = params + delim + "brighten=" + to_string(val);
+            params = params + delim + "brighten=" + to_string(brightenval);
             delim = " ";
         }
         if (rotate)
         {
-            val = stoi(rotlevel);
-            params = params + delim + "rotate=" + to_string(val);
+            params = params + delim + "rotate=" + to_string(rotateval);
             delim = " ";
         }
         cout << "Input: " << input << endl;
@@ -58,10 +89,11 @@ using namespace std;
 
     bool Args::parse(int argc, char* argv[])
     {
-        bool result = false;
+        bool result = true;
         if (argc < 3)
         {
-            error_message = "Required parameters not provided";
+            error_message = "Required parameters not provided. Must provide input and output file.";
+            result = false;
         }
         else
         {
@@ -85,7 +117,7 @@ using namespace std;
                 {
                     flipV = true;
                 }
-                //logic for options with values
+                //logic for options that require values 
                 if (strcmp(argv[i], "--brighten") == 0 || strcmp(argv[i], "-b") == 0)
                 {
                     if (i+1 < argc)
@@ -93,35 +125,84 @@ using namespace std;
                         brighten = true;
                         brlevel = argv[++i];
                     }
-                    else 
+                }
+                else if(result && strncmp(argv[i], "--brighten=", 11) ==0)
+                {
+                    string current = argv[i];
+                    if(current.length() > 11)
                     {
-                        cout << "Brighten requires another argument" << endl;
+                        brighten = true;
+                        brlevel = current.substr(11);
                     }
                 }
-                if(strncmp(argv[i], "--brighten=", 11) ==0)
+                
+                if (!brlevel.empty())
                 {
-                    brighten = true;
-                    brlevel = argv[i] + 11;
+                    if(isInteger(brlevel))
+                    {
+                        brightenval = stoi(brlevel);
+                        if (brightenval < -255 || brightenval > 255)
+                        {
+                            error_message = "Error: brightness must be in [-255,255]";
+                            result = false;
+                        }
+                    }
+                    else
+                    {
+                        error_message = "Brighten requires integer value.";
+                        result = false;
+                    }
                 }
-                if (strcmp(argv[i], "--rotate") == 0 || strcmp(argv[i], "-r") == 0)
+                else if(brighten)
+                {
+                    error_message = "Brighten requires integer value.";
+                    result = false;
+                }
+
+                if (result && (strcmp(argv[i], "--rotate") == 0 || strcmp(argv[i], "-r") == 0))
                 {
                     if (i+1 < argc)
                     {
                         rotate = true;
                         rotlevel = argv[++i];
                     }
-                    else 
+                }
+                else if(result && strncmp(argv[i], "--rotate=", 9) ==0)
+                {
+                    string current = argv[i];
+                    if(current.length() > 9)
                     {
-                        cout << "Rotate requires another argument" << endl;
+                        rotate = true;
+                        rotlevel = current.substr(9);
                     }
                 }
-                 if(strncmp(argv[i], "--rotate=", 9) ==0)
+                if (!rotlevel.empty())
                 {
-                    rotate = true;
-                    rotlevel = argv[i] + 9;
+                    if(isInteger(rotlevel))
+                    {
+                        rotateval = stoi(rotlevel);
+                        if (rotateval == 0 || rotateval == 90 || rotateval == 180 || rotateval == 270)
+                        {
+                            rotate = true;
+                        }
+                        else
+                        {
+                            error_message = "Error: Rotate must be 0, 90, 180, 270";
+                            result = false;
+                        }
+                    }
+                    else
+                    {
+                        error_message = "Rotate requires integer value.";
+                        result = false;
+                    }
+                }
+                else if(rotate)
+                {
+                    error_message = "Rotate requires integer value.";
+                    result = false;
                 }
             }
-            result = true;
         }
         return result;
     }
