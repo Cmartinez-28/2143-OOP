@@ -1,4 +1,5 @@
 ## Program 02
+This program builds a command-line argument parser for an image processing tool. This is done through creating an Args class with a method to check whether valid arguments are read from the command line. If arguments are not valid, an error message is printed out to explain the issue to the user. With valid input, the options that the user chose are are printed out.
 ## Christopher Martinez
 
 ### Files
