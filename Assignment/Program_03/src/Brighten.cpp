@@ -17,7 +17,8 @@ void Brighten::apply(Grid& pixels) {
     // Outer loop: one pass per row (top to bottom)
     for (auto& row : pixels) {
         // Inner loop: one pixel per column (left to right)
-        for (Pixel& p : row) {
+        for (Pixel& p : row) 
+        {
             // Pixel channels are int, so this arithmetic is safe.
             // No clamping needed here — Image::save() clamps on write.
             p.r += amount_;
