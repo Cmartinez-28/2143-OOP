@@ -1,3 +1,7 @@
+#include "Rotate.h"
+
+Rotate::Rotate(int degrees) : degrees_(degrees) {}
+
 std::string Rotate::name() const {
     return "rotate(" + std::to_string(degrees_) + ")";
 }
@@ -16,6 +20,16 @@ void Rotate::apply(Grid& pixels)
 
     if (degrees_ == 180)
     {
-       
+        for(auto& row : pixels)
+        {
+            for (int col = 0; col < width / 2; ++col)
+            {
+                swap(row[col], row[width - 1 - col]);
+            }
+        }
+        for(int row = 0; row < height / 2; ++row)
+        {
+            swap(pixels[row],pixels[height - 1- row]);
+        }
     }
 }
