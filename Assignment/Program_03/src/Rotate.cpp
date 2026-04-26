@@ -1,4 +1,6 @@
 #include "Rotate.h"
+#include <algorithm>
+using namespace std;
 
 Rotate::Rotate(int degrees) : degrees_(degrees) {}
 
@@ -31,5 +33,10 @@ void Rotate::apply(Grid& pixels)
         {
             swap(pixels[row],pixels[height - 1- row]);
         }
+    }
+
+    if (degrees == 90)
+    {
+        
     }
 }

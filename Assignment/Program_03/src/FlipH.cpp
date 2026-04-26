@@ -1,5 +1,6 @@
 #include "FlipH.h"
 #include <algorithm>    // std::swap
+using namespace std;
 
 std::string FlipH::name() const 
 {

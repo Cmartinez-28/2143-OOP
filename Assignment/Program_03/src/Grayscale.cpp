@@ -16,3 +16,4 @@ void Grayscale::apply(Grid& pixels) {
          }
 
     }
+}
